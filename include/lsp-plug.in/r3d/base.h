@@ -5,8 +5,8 @@
  *      Author: sadko
  */
 
-#ifndef LSP_PLUG_IN_R3D_BASE_BACKEND_H_
-#define LSP_PLUG_IN_R3D_BASE_BACKEND_H_
+#ifndef LSP_PLUG_IN_R3D_BASE_H_
+#define LSP_PLUG_IN_R3D_BASE_H_
 
 #include <lsp-plug.in/common/types.h>
 #include <lsp-plug.in/r3d/version.h>
@@ -48,4 +48,4 @@ namespace lsp
     }
 }
 
-#endif /* LSP_PLUG_IN_R3D_BASE_BACKEND_H_ */
+#endif /* LSP_PLUG_IN_R3D_BASE_H_ */

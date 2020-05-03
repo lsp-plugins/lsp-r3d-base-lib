@@ -8,9 +8,12 @@
 #ifndef LSP_PLUG_IN_R3D_FACTORY_H_
 #define LSP_PLUG_IN_R3D_FACTORY_H_
 
+#include <lsp-plug.in/r3d/base.h>
 #include <lsp-plug.in/r3d/version.h>
 #include <lsp-plug.in/r3d/types.h>
-#include <lsp-plug.in/r3d/base_backend.h>
+
+#define LSP_R3D_FACTORY_FUNCTION_NAME           "lsp_r3d_factory"
+#define LSP_R3D_FACTORY_FUNCTION_HEADER         LSP_CSYMBOL_EXPORT ::lsp::r3d::factory_t *lsp_r3d_factory()
 
 namespace lsp
 {

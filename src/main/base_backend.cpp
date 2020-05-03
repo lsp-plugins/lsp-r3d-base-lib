@@ -5,7 +5,7 @@
  *      Author: sadko
  */
 
-#include <lsp-plug.in/r3d/base_backend.h>
+#include <lsp-plug.in/r3d/base.h>
 #include <lsp-plug.in/stdlib/string.h>
 
 namespace lsp
@@ -55,9 +55,9 @@ namespace lsp
             base_backend_t *_this = static_cast<base_backend_t *>(handle);
             switch (type)
             {
-                case R3D_MATRIX_PROJECTION: _this->matProjection    = *m;   break;
-                case R3D_MATRIX_VIEW:       _this->matView          = *m;   break;
-                case R3D_MATRIX_WORLD:      _this->matWorld         = *m;   break;
+                case MATRIX_PROJECTION: _this->matProjection    = *m;   break;
+                case MATRIX_VIEW:       _this->matView          = *m;   break;
+                case MATRIX_WORLD:      _this->matWorld         = *m;   break;
                 default: return STATUS_INVALID_VALUE;
             }
             return STATUS_OK;
@@ -71,9 +71,9 @@ namespace lsp
             base_backend_t *_this = static_cast<base_backend_t *>(handle);
             switch (type)
             {
-                case R3D_MATRIX_PROJECTION: *m  = _this->matProjection;     break;
-                case R3D_MATRIX_VIEW:       *m  = _this->matView;           break;
-                case R3D_MATRIX_WORLD:      *m  = _this->matWorld;          break;
+                case MATRIX_PROJECTION: *m  = _this->matProjection;     break;
+                case MATRIX_VIEW:       *m  = _this->matView;           break;
+                case MATRIX_WORLD:      *m  = _this->matWorld;          break;
                 default: return STATUS_INVALID_VALUE;
             }
             return STATUS_OK;

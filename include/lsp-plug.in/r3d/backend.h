@@ -22,7 +22,6 @@ namespace lsp
             const char *id;             // Enumeration unique identifier
             const char *display;        // Display name
             const char *lc_key;         // Localized display name key
-            version_t   version;        // Interface version
         } backend_metadata_t;
 
         /**

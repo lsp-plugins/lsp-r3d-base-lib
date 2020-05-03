@@ -11,55 +11,52 @@
 #include <lsp-plug.in/r3d/version.h>
 #include <lsp-plug.in/common/types.h>
 
-#define LSP_R3D_FACTORY_FUNCTION_NAME       "lsp_r3d_factory"
-#define LSP_R3D_FACTORY_VERSION_NAME        "lsp_r3d_version"
-
 namespace lsp
 {
     namespace r3d
     {
         enum window_handle_t
         {
-            R3D_WND_HANDLE_X11,
-            R3D_WND_HANDLE_WINNT
+            WND_HANDLE_X11,
+            WND_HANDLE_WINNT
         };
 
         enum pixel_format_t
         {
-            R3D_PIXEL_RGBA,
-            R3D_PIXEL_BGRA,
-            R3D_PIXEL_RGB,
-            R3D_PIXEL_BGR
+            PIXEL_RGBA,
+            PIXEL_BGRA,
+            PIXEL_RGB,
+            PIXEL_BGR
         };
 
         enum matrix_type_t
         {
-            R3D_MATRIX_PROJECTION,  /* Projection matrix */
-            R3D_MATRIX_VIEW,        /* View matrix */
-            R3D_MATRIX_WORLD        /* World matrix for additional transformations if view matrix is not enough */
+            MATRIX_PROJECTION,  /* Projection matrix */
+            MATRIX_VIEW,        /* View matrix */
+            MATRIX_WORLD        /* World matrix for additional transformations if view matrix is not enough */
         };
 
         enum light_type_t
         {
-            R3D_LIGHT_NONE,
-            R3D_LIGHT_POINT,
-            R3D_LIGHT_DIRECTIONAL,
-            R3D_LIGHT_SPOT
+            LIGHT_NONE,
+            LIGHT_POINT,
+            LIGHT_DIRECTIONAL,
+            LIGHT_SPOT
         };
 
         enum primitive_type_t
         {
-            R3D_PRIMITIVE_TRIANGLES,
-            R3D_PRIMITIVE_WIREFRAME_TRIANGLES,
-            R3D_PRIMITIVE_LINES,
-            R3D_PRIMITIVE_POINTS,
+            PRIMITIVE_TRIANGLES,
+            PRIMITIVE_WIREFRAME_TRIANGLES,
+            PRIMITIVE_LINES,
+            PRIMITIVE_POINTS,
         };
 
         enum buffer_flags_t
         {
-            R3D_BUFFER_BLENDING     = 1 << 0,
-            R3D_BUFFER_LIGHTING     = 1 << 1,
-            R3D_BUFFER_NO_CULLING   = 1 << 2
+            BUFFER_BLENDING     = 1 << 0,
+            BUFFER_LIGHTING     = 1 << 1,
+            BUFFER_NO_CULLING   = 1 << 2
         };
 
         #pragma pack(push, 1)
