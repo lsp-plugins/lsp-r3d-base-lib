@@ -5,45 +5,47 @@
  *      Author: sadko
  */
 
-#ifndef RENDERING_BASE_BACKEND_H_
-#define RENDERING_BASE_BACKEND_H_
+#ifndef LSP_PLUG_IN_R3D_BASE_BACKEND_H_
+#define LSP_PLUG_IN_R3D_BASE_BACKEND_H_
 
-#include <dsp/dsp.h>
-#include <core/status.h>
-#include <core/stdlib/string.h>
-#include <rendering/backend.h>
+#include <lsp-plug.in/common/types.h>
+#include <lsp-plug.in/r3d/version.h>
+#include <lsp-plug.in/r3d/backend.h>
 
 namespace lsp
 {
-    typedef struct r3d_base_backend_t: public r3d_backend_t
+    namespace r3d
     {
-        matrix3d_t  matProjection;
-        matrix3d_t  matView;
-        matrix3d_t  matWorld;
+        typedef struct base_backend_t: public backend_t
+        {
+            mat4_t   matProjection;
+            mat4_t   matView;
+            mat4_t   matWorld;
 
-        color3d_t   colBackground;
+            color_t     colBackground;
 
-        ssize_t     viewLeft;
-        ssize_t     viewTop;
-        ssize_t     viewWidth;
-        ssize_t     viewHeight;
+            ssize_t     viewLeft;
+            ssize_t     viewTop;
+            ssize_t     viewWidth;
+            ssize_t     viewHeight;
 
-        static void init_matrix_identity(matrix3d_t *m);
-        static void matrix_mul(matrix3d_t *r, const matrix3d_t *s, const matrix3d_t *m);
+            static void init_matrix_identity(mat4_t *m);
+            static void matrix_mul(mat4_t *r, const mat4_t *s, const mat4_t *m);
 
-        explicit r3d_base_backend_t();
+            explicit base_backend_t();
 
-        static status_t init(r3d_base_backend_t *_this);
-        static void destroy(r3d_base_backend_t *_this);
+            static status_t init(backend_t *handle);
+            static void destroy(backend_t *handle);
 
-        static status_t locate(r3d_base_backend_t *_this, ssize_t left, ssize_t top, ssize_t width, ssize_t height);
-        static status_t set_matrix(r3d_base_backend_t *_this, r3d_matrix_type_t type, const matrix3d_t *m);
-        static status_t get_matrix(r3d_base_backend_t *_this, r3d_matrix_type_t type, matrix3d_t *m);
-        static status_t set_bg_color(r3d_base_backend_t *_this, const color3d_t *color);
-        static status_t get_bg_color(r3d_base_backend_t *_this, color3d_t *color);
-        static status_t get_location(r3d_base_backend_t *_this, ssize_t *left, ssize_t *top, ssize_t *width, ssize_t *height);
+            static status_t locate(backend_t *handle, ssize_t left, ssize_t top, ssize_t width, ssize_t height);
+            static status_t set_matrix(backend_t *handle, matrix_type_t type, const mat4_t *m);
+            static status_t get_matrix(backend_t *handle, matrix_type_t type, mat4_t *m);
+            static status_t set_bg_color(backend_t *handle, const color_t *color);
+            static status_t get_bg_color(backend_t *handle, color_t *color);
+            static status_t get_location(backend_t *handle, ssize_t *left, ssize_t *top, ssize_t *width, ssize_t *height);
 
-    } r3d_base_backend_t;
+        } base_backend_t;
+    }
 }
 
-#endif /* RENDERING_BASE_BACKEND_H_ */
+#endif /* LSP_PLUG_IN_R3D_BASE_BACKEND_H_ */

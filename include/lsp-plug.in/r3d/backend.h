@@ -5,139 +5,139 @@
  *      Author: sadko
  */
 
-#ifndef RENDERING_BACKEND_H_
-#define RENDERING_BACKEND_H_
+#ifndef LSP_PLUG_IN_R3D_BACKEND_H_
+#define LSP_PLUG_IN_R3D_BACKEND_H_
 
-#include <dsp/dsp.h>
-#include <core/types.h>
-#include <core/status.h>
-#include <rendering/types.h>
+#include <lsp-plug.in/r3d/version.h>
+#include <lsp-plug.in/r3d/types.h>
+#include <lsp-plug.in/common/types.h>
+#include <lsp-plug.in/common/status.h>
 
-using namespace lsp;
-
-typedef struct r3d_backend_metadata_t
+namespace lsp
 {
-    const char *id;         // Enumeration unique identifier
-    const char *display;    // Display name
-} backend_metadata_t;
+    namespace r3d
+    {
+        typedef struct backend_metadata_t
+        {
+            const char *id;         // Enumeration unique identifier
+            const char *display;    // Display name
+        } backend_metadata_t;
 
-typedef struct r3d_backend_t r3d_backend_t;
+        /**
+         * 3D Rendering backend interface, just functions that should be called on
+         * a structure instance
+         */
+        typedef struct backend_t
+        {
+            /**
+             * Destroy backend
+             */
+            void        (* destroy)(backend_t *_this);
 
-#define R3D_EXPORT
+            /**
+             * Initialize backend as a native window, all window manipulations
+             * should be done by the host
+             * @param window native window handle to work with
+             * @param out_window pointer to store the created window handle
+             * @return status of operation
+             */
+            status_t    (* init_window)(backend_t *_this, void **out_window);
 
-/**
- * 3D Rendering backend interface, just functions that should be called on
- * a structure instance
- */
-struct r3d_backend_t
-{
-    /**
-     * Destroy backend
-     */
-    void        (* destroy)(r3d_backend_t *_this);
+            /**
+             * Initialize backend as an off-screen buffer
+             * @return status of operation
+             */
+            status_t    (* init_offscreen)(backend_t *_this);
 
-    /**
-     * Initialize backend as a native window, all window manipulations
-     * should be done by the host
-     * @param window native window handle to work with
-     * @param out_window pointer to store the created window handle
-     * @return status of operation
-     */
-    status_t    (* init_window)(r3d_backend_t *_this, void **out_window);
+            /**
+             * @param left the leftmost coordinate of the backend's viewport relative to the parent window
+             * @param top the topmost coordinate of the backend's viewport relative to the parent window
+             * @param width the width of the backend's viewport
+             * @param height the heigh of the backend's viewport
+             */
+            status_t    (* locate)(backend_t *_this, ssize_t left, ssize_t top, ssize_t width, ssize_t height);
 
-    /**
-     * Initialize backend as an off-screen buffer
-     * @return status of operation
-     */
-    status_t    (* init_offscreen)(r3d_backend_t *_this);
+            /**
+             * @param left the leftmost coordinate of the backend's viewport relative to the parent window
+             * @param top the topmost coordinate of the backend's viewport relative to the parent window
+             * @param width the width of the backend's viewport
+             * @param height the heigh of the backend's viewport
+             */
+            status_t    (* get_location)(backend_t *_this, ssize_t *left, ssize_t *top, ssize_t *width, ssize_t *height);
 
-    /**
-     * @param left the leftmost coordinate of the backend's viewport relative to the parent window
-     * @param top the topmost coordinate of the backend's viewport relative to the parent window
-     * @param width the width of the backend's viewport
-     * @param height the heigh of the backend's viewport
-     */
-    status_t    (* locate)(r3d_backend_t *_this, ssize_t left, ssize_t top, ssize_t width, ssize_t height);
+            /**
+             * Start rendering on the window
+             * @return status of operation
+             */
+            status_t    (* start)(backend_t *_this);
 
-    /**
-     * @param left the leftmost coordinate of the backend's viewport relative to the parent window
-     * @param top the topmost coordinate of the backend's viewport relative to the parent window
-     * @param width the width of the backend's viewport
-     * @param height the heigh of the backend's viewport
-     */
-    status_t    (* get_location)(r3d_backend_t *_this, ssize_t *left, ssize_t *top, ssize_t *width, ssize_t *height);
+            /**
+             * Complete all pending operations
+             * @return status of operation
+             */
+            status_t    (* sync)(backend_t *_this);
 
-    /**
-     * Start rendering on the window
-     * @return status of operation
-     */
-    status_t    (* start)(r3d_backend_t *_this);
+            /**
+             * Complete rendering on the window
+             * @return status of operation
+             */
+            status_t    (* finish)(backend_t *_this);
 
-    /**
-     * Complete all pending operations
-     * @return status of operation
-     */
-    status_t    (* sync)(r3d_backend_t *_this);
+            /**
+             * Set transformation matrix
+             * @param type transformation matrix type
+             * @param m transformation matrix data of 16 floats (column-major)
+             * @return status of operation
+             */
+            status_t    (* set_matrix)(backend_t *_this, matrix_type_t type, const mat4_t *m);
 
-    /**
-     * Complete rendering on the window
-     * @return status of operation
-     */
-    status_t    (* finish)(r3d_backend_t *_this);
+            /**
+             * Get transformation matrix
+             * @param type transformation matrix type
+             * @param m pointer to retrieve transformation matrix data of 16 floats (column-major)
+             * @return status of operation
+             */
+            status_t    (* get_matrix)(backend_t *_this, matrix_type_t type, mat4_t *m);
 
-    /**
-     * Set transformation matrix
-     * @param type transformation matrix type
-     * @param m transformation matrix data of 16 floats (column-major)
-     * @return status of operation
-     */
-    status_t    (* set_matrix)(r3d_backend_t *_this, r3d_matrix_type_t type, const matrix3d_t *m);
+            /**
+             * Set current lighting schema according to passed array of lights
+             * @param lights array of lights
+             * @param count number of lights per scene
+             * @return status of operation
+             */
+            status_t    (* set_lights)(backend_t *_this, const light_t *lights, size_t count);
 
-    /**
-     * Get transformation matrix
-     * @param type transformation matrix type
-     * @param m pointer to retrieve transformation matrix data of 16 floats (column-major)
-     * @return status of operation
-     */
-    status_t    (* get_matrix)(r3d_backend_t *_this, r3d_matrix_type_t type, matrix3d_t *m);
+            /**
+             * Draw data
+             * @param buffer buffer data to draw
+             * @return status of operation
+             */
+            status_t    (* draw_primitives)(backend_t *_this, const buffer_t *buffer);
 
-    /**
-     * Set current lighting schema according to passed array of lights
-     * @param lights array of lights
-     * @param count number of lights per scene
-     * @return status of operation
-     */
-    status_t    (* set_lights)(r3d_backend_t *_this, const r3d_light_t *lights, size_t count);
+            /**
+             * Set the default background color
+             * @param color default background color
+             * @return status of operation
+             */
+            status_t    (* set_bg_color)(backend_t *_this, const color_t *color);
 
-    /**
-     * Draw data
-     * @param buffer buffer data to draw
-     * @return status of operation
-     */
-    status_t    (* draw_primitives)(r3d_backend_t *_this, const r3d_buffer_t *buffer);
+            /**
+             * Get the default background color
+             * @param color pointer to store default background color
+             * @return status of operation
+             */
+            status_t    (* get_bg_color)(backend_t *_this, color_t *color);
 
-    /**
-     * Set the default background color
-     * @param color default background color
-     * @return status of operation
-     */
-    status_t    (* set_bg_color)(r3d_backend_t *_this, const color3d_t *color);
+            /**
+             * Read pixel data, should be in drawing state
+             * @param buf target buffer
+             * @param stride stride between two rows
+             * @param format pixel format
+             * @return status of operation
+             */
+            status_t    (* read_pixels)(backend_t *_this, void *buf, size_t stride, pixel_format_t format);
+        } backend_t;
+    }
+}
 
-    /**
-     * Get the default background color
-     * @param color pointer to store default background color
-     * @return status of operation
-     */
-    status_t    (* get_bg_color)(r3d_backend_t *_this, color3d_t *color);
-
-    /**
-     * Read pixel data, should be in drawing state
-     * @param buf target buffer
-     * @param stride stride between two rows
-     * @param format pixel format
-     * @return status of operation
-     */
-    status_t    (* read_pixels)(r3d_backend_t *_this, void *buf, size_t stride, r3d_pixel_format_t format);
-};
-
-#endif /* RENDERING_BACKEND_H_ */
+#endif /* LSP_PLUG_IN_R3D_BACKEND_H_ */
