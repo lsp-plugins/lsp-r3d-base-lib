@@ -3,7 +3,7 @@ ARTIFACT_NAME               = lsp-r3d-base-lib
 ARTIFACT_VARS               = LSP_R3D_BASE_LIB
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 0
-VERSION                     = 0.5.0
+VERSION                     = 0.5.1-devel
 
 # List of dependencies
 TEST_DEPENDENCIES = \
