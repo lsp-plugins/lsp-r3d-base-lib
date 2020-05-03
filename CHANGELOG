@@ -3,6 +3,7 @@
 *******************************************************************************
 
 === 0.5.1 ===
+* Modified base R3D interface constants and metadata structures.
 
 === 0.5.0 ===
 * Initial release.
