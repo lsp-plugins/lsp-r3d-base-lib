@@ -11,8 +11,6 @@
 #include <lsp-plug.in/r3d/version.h>
 #include <lsp-plug.in/common/types.h>
 
-#define LSP_R3D_FACTORY_FUNCTION_NAME           "lsp_r3d_factory"
-
 namespace lsp
 {
     namespace r3d
