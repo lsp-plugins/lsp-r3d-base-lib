@@ -8,9 +8,9 @@
 #ifndef LSP_PLUG_IN_R3D_FACTORY_H_
 #define LSP_PLUG_IN_R3D_FACTORY_H_
 
+#include <lsp-plug.in/r3d/base.h>
 #include <lsp-plug.in/r3d/version.h>
 #include <lsp-plug.in/r3d/types.h>
-#include <lsp-plug.in/r3d/base_backend.h>
 
 namespace lsp
 {
