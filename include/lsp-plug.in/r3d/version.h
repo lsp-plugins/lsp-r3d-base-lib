@@ -10,6 +10,6 @@
 
 #define LSP_R3D_BASE_MAJOR          0
 #define LSP_R3D_BASE_MINOR          5
-#define LSP_R3D_BASE_MICRO          1
+#define LSP_R3D_BASE_MICRO          2
 
 #endif /* LSP_PLUG_IN_R3D_VERSION_H_ */
