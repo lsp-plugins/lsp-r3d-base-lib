@@ -12,8 +12,6 @@
 #include <lsp-plug.in/r3d/types.h>
 #include <lsp-plug.in/r3d/base_backend.h>
 
-#define R3D_FACTORY_FUNCTION_NAME       "lsp_r3d_factory"
-
 namespace lsp
 {
     namespace r3d
@@ -38,10 +36,9 @@ namespace lsp
 
         /**
          * Factory function prototype
-         * @param version
-         * @return
+         * @return pointer to the factory function
          */
-        typedef factory_t *(* factory_function_t)(const char *version);
+        typedef factory_t *(* factory_function_t)();
     }
 }
 
