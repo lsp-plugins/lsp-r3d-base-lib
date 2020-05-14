@@ -10,4 +10,5 @@ LSP_TEST_FW_URL            := https://github.com/sadko4u/$(LSP_TEST_FW_NAME).git
 LSP_TEST_FW_TYPE           := src
 
 STDLIB_VERSION             := system
+STDLIB_TYPE                := opt
 STDLIB_LDFLAGS             := -lpthread -ldl
