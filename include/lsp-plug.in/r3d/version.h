@@ -10,7 +10,7 @@
 
 #define LSP_R3D_BASE_LIB_MAJOR          0
 #define LSP_R3D_BASE_LIB_MINOR          5
-#define LSP_R3D_BASE_LIB_MICRO          2
+#define LSP_R3D_BASE_LIB_MICRO          3
 
 #ifdef LSP_R3D_BASE_LIB_BUILTIN
     #define LSP_R3D_BASE_LIB_EXPORT
