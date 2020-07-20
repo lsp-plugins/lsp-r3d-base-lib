@@ -13,7 +13,7 @@
 #include <lsp-plug.in/r3d/types.h>
 
 #define LSP_R3D_FACTORY_FUNCTION_NAME           "lsp_r3d_factory"
-#define LSP_R3D_FACTORY_FUNCTION_HEADER         LSP_CSYMBOL_EXPORT ::lsp::r3d::factory_t *lsp_r3d_factory()
+#define LSP_R3D_FACTORY_FUNCTION_HEADER         ::lsp::r3d::factory_t *lsp_r3d_factory()
 
 namespace lsp
 {
