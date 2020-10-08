@@ -56,7 +56,7 @@ namespace lsp
          */
         #define BUILTIN_FACTORY(symbol, factory)   \
             LSP_SYMBOL_HIDDEN \
-            ::lsp::r3d::Factory symbol(factory)
+            ::lsp::r3d::Factory symbol(factory);
     }
 }
 
