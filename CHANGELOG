@@ -3,6 +3,7 @@
 *******************************************************************************
 
 === 0.5.4 ===
+* Added possibility to define built-in R3D factory.
 
 === 0.5.3 ===
 * Updated build scripts that now use tags without prefixes first.
