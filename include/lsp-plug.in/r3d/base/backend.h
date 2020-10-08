@@ -19,12 +19,12 @@
  * along with lsp-r3d-base-lib. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef LSP_PLUG_IN_R3D_BASE_H_
-#define LSP_PLUG_IN_R3D_BASE_H_
+#ifndef LSP_PLUG_IN_R3D_BASE_BACKEND_H_
+#define LSP_PLUG_IN_R3D_BASE_BACKEND_H_
 
+#include <lsp-plug.in/r3d/base/version.h>
+#include <lsp-plug.in/r3d/iface/backend.h>
 #include <lsp-plug.in/common/types.h>
-#include <lsp-plug.in/r3d/version.h>
-#include <lsp-plug.in/r3d/backend.h>
 
 namespace lsp
 {
@@ -62,4 +62,4 @@ namespace lsp
     }
 }
 
-#endif /* LSP_PLUG_IN_R3D_BASE_H_ */
+#endif /* LSP_PLUG_IN_R3D_BASE_BACKEND_H_ */

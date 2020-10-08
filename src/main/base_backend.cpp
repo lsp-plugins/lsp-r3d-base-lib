@@ -19,7 +19,7 @@
  * along with lsp-r3d-base-lib. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <lsp-plug.in/r3d/base.h>
+#include <lsp-plug.in/r3d/base/backend.h>
 #include <lsp-plug.in/stdlib/string.h>
 
 namespace lsp
