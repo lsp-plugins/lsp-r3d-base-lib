@@ -26,6 +26,30 @@ namespace lsp
 {
     namespace r3d
     {
+        void base_backend_t::construct()
+        {
+            viewLeft    = 0;
+            viewTop     = 0;
+            viewWidth   = 0;
+            viewHeight  = 0;
+
+            // Initialize vtable
+            #define R3D_BASE_BACKEND_EXP(func)   backend_t::func = base_backend_t::func;
+            R3D_BASE_BACKEND_EXP(destroy);
+            R3D_BASE_BACKEND_EXP(locate);
+            R3D_BASE_BACKEND_EXP(set_matrix);
+            R3D_BASE_BACKEND_EXP(get_matrix);
+            R3D_BASE_BACKEND_EXP(get_location);
+            R3D_BASE_BACKEND_EXP(get_bg_color);
+            R3D_BASE_BACKEND_EXP(set_bg_color);
+            #undef R3D_BASE_BACKEND_EXP
+        }
+
+        base_backend_t::base_backend_t()
+        {
+            construct();
+        }
+
         void base_backend_t::init_matrix_identity(mat4_t *m)
         {
             ::bzero(m, sizeof(mat4_t));
@@ -165,25 +189,6 @@ namespace lsp
             _this->viewHeight  = height;
 
             return STATUS_OK;
-        }
-
-        base_backend_t::base_backend_t()
-        {
-            viewLeft    = 0;
-            viewTop     = 0;
-            viewWidth   = 0;
-            viewHeight  = 0;
-
-            // Initialize vtable
-            #define R3D_BASE_BACKEND_EXP(func)   backend_t::func = base_backend_t::func;
-            R3D_BASE_BACKEND_EXP(destroy);
-            R3D_BASE_BACKEND_EXP(locate);
-            R3D_BASE_BACKEND_EXP(set_matrix);
-            R3D_BASE_BACKEND_EXP(get_matrix);
-            R3D_BASE_BACKEND_EXP(get_location);
-            R3D_BASE_BACKEND_EXP(get_bg_color);
-            R3D_BASE_BACKEND_EXP(set_bg_color);
-            #undef R3D_BASE_BACKEND_EXP
         }
     }
 }
