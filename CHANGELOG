@@ -2,6 +2,9 @@
 * RECENT CHANGES
 *******************************************************************************
 
+=== 0.5.4 ===
+* Split all interface code into lsp-r3d-iface.
+
 === 0.5.3 ===
 * Updated build scripts that now use tags without prefixes first.
 * Updated headers and license files to match LGPL3+ license.
