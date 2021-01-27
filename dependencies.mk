@@ -31,9 +31,10 @@ LSP_TEST_FW_URL            := https://github.com/sadko4u/$(LSP_TEST_FW_NAME).git
 
 LSP_R3D_IFACE_VERSION      := 0.5.1
 LSP_R3D_IFACE_NAME         := lsp-r3d-iface
-LSP_R3D_IFACE_TYPE         := hdr
+LSP_R3D_IFACE_TYPE         := src
 LSP_R3D_IFACE_URL          := https://github.com/sadko4u/$(LSP_R3D_IFACE_NAME).git
 
-STDLIB_VERSION             := system
-STDLIB_TYPE                := opt
-STDLIB_LDFLAGS             := -lpthread -ldl
+LIBPTHREAD_VERSION         := system
+LIBPTHREAD_NAME            := libpthread
+LIBPTHREAD_TYPE            := opt
+LIBPTHREAD_LDFLAGS         := -lpthread
