@@ -3,6 +3,7 @@
 *******************************************************************************
 
 === 0.5.5 ===
+- Updated build system.
 
 === 0.5.4 ===
 * Split all interface code into lsp-r3d-iface.
