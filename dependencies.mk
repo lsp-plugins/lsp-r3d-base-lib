@@ -19,21 +19,22 @@
 #
 
 # Variables that describe dependencies
-LSP_COMMON_LIB_VERSION     := 1.0.10
+LSP_COMMON_LIB_VERSION     := 1.0.14
 LSP_COMMON_LIB_NAME        := lsp-common-lib
 LSP_COMMON_LIB_TYPE        := hdr
-LSP_COMMON_LIB_URL         := https://github.com/sadko4u/$(LSP_COMMON_LIB_NAME).git
+LSP_COMMON_LIB_URL         := git@github.com:lsp-plugins/$(LSP_COMMON_LIB_NAME).git
 
-LSP_TEST_FW_VERSION        := 1.0.6
+LSP_TEST_FW_VERSION        := 1.0.8
 LSP_TEST_FW_NAME           := lsp-test-fw
 LSP_TEST_FW_TYPE           := src
-LSP_TEST_FW_URL            := https://github.com/sadko4u/$(LSP_TEST_FW_NAME).git
+LSP_TEST_FW_URL            := git@github.com:lsp-plugins/$(LSP_TEST_FW_NAME).git
 
-LSP_R3D_IFACE_VERSION      := 0.5.1
+LSP_R3D_IFACE_VERSION      := 0.5.2
 LSP_R3D_IFACE_NAME         := lsp-r3d-iface
-LSP_R3D_IFACE_TYPE         := hdr
-LSP_R3D_IFACE_URL          := https://github.com/sadko4u/$(LSP_R3D_IFACE_NAME).git
+LSP_R3D_IFACE_TYPE         := src
+LSP_R3D_IFACE_URL          := git@github.com:lsp-plugins/$(LSP_R3D_IFACE_NAME).git
 
-STDLIB_VERSION             := system
-STDLIB_TYPE                := opt
-STDLIB_LDFLAGS             := -lpthread -ldl
+LIBPTHREAD_VERSION         := system
+LIBPTHREAD_NAME            := libpthread
+LIBPTHREAD_TYPE            := opt
+LIBPTHREAD_LDFLAGS         := -lpthread

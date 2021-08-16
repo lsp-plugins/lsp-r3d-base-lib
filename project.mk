@@ -19,21 +19,21 @@
 #
 
 # Package version
+ARTIFACT_ID                 = LSP_R3D_BASE_LIB
 ARTIFACT_NAME               = lsp-r3d-base-lib
 ARTIFACT_DESC               = Base library for implementing and loading 3D rendering backend
-ARTIFACT_VARS               = LSP_R3D_BASE_LIB
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 0
-ARTIFACT_VERSION            = 0.5.4
+ARTIFACT_VERSION            = 0.5.5
 
 # List of dependencies
-TEST_DEPENDENCIES = \
-  LSP_TEST_FW
-
 DEPENDENCIES = \
-  STDLIB \
+  LIBPTHREAD \
   LSP_COMMON_LIB \
   LSP_R3D_IFACE
+
+TEST_DEPENDENCIES = \
+  LSP_TEST_FW
 
 ALL_DEPENDENCIES = \
   $(DEPENDENCIES) \
