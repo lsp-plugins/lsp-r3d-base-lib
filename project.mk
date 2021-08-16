@@ -24,7 +24,7 @@ ARTIFACT_NAME               = lsp-r3d-base-lib
 ARTIFACT_DESC               = Base library for implementing and loading 3D rendering backend
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 0
-ARTIFACT_VERSION            = 0.5.5
+ARTIFACT_VERSION            = 0.5.6-devel
 
 # List of dependencies
 DEPENDENCIES = \
