@@ -25,16 +25,3 @@ ARTIFACT_DESC               = Base library for implementing and loading 3D rende
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 0
 ARTIFACT_VERSION            = 0.5.6-devel
-
-# List of dependencies
-DEPENDENCIES = \
-  LIBPTHREAD \
-  LSP_COMMON_LIB \
-  LSP_R3D_IFACE
-
-TEST_DEPENDENCIES = \
-  LSP_TEST_FW
-
-ALL_DEPENDENCIES = \
-  $(DEPENDENCIES) \
-  $(TEST_DEPENDENCIES)
