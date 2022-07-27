@@ -52,6 +52,9 @@ namespace lsp
             static status_t     init(backend_t *handle);
             static void         destroy(backend_t *handle);
 
+            static void         memswap(void *a, void *b, size_t bytes);
+            static void         swap_rows(void *buf, size_t rows, size_t bytes_per_row);
+
             static status_t     locate(backend_t *handle, ssize_t left, ssize_t top, ssize_t width, ssize_t height);
             static status_t     set_matrix(backend_t *handle, matrix_type_t type, const mat4_t *m);
             static status_t     get_matrix(backend_t *handle, matrix_type_t type, mat4_t *m);

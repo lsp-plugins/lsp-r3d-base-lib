@@ -159,6 +159,54 @@ namespace lsp
             R[15]   = A[3] * B[12]  + A[7] * B[13]  + A[11] * B[14] + A[15] * B[15];
         }
 
+        void base_backend_t::memswap(void *a, void *b, size_t bytes)
+        {
+            uint32_t *xa    = reinterpret_cast<uint32_t *>(a);
+            uint32_t *xb    = reinterpret_cast<uint32_t *>(b);
+            for (; bytes >= 16 ; bytes -= 16, xa += 4, xb += 4)
+            {
+                uint32_t t0     = xa[0];
+                uint32_t t1     = xa[1];
+                uint32_t t2     = xa[2];
+                uint32_t t3     = xa[3];
+
+                xa[0]           = xb[0];
+                xa[1]           = xb[1];
+                xa[2]           = xb[2];
+                xa[3]           = xb[3];
+
+                xb[0]           = t0;
+                xb[1]           = t1;
+                xb[2]           = t2;
+                xb[3]           = t3;
+            }
+
+            for (; bytes >= 4 ; bytes -= 4, xa += 1, xb += 1)
+            {
+                uint32_t t0     = xa[0];
+                xa[0]           = xb[0];
+                xb[0]           = t0;
+            }
+
+            uint8_t *ya    = reinterpret_cast<uint8_t *>(xa);
+            uint8_t *yb    = reinterpret_cast<uint8_t *>(xb);
+
+            for (size_t i=0; i<bytes; ++i)
+            {
+                uint8_t t0      = ya[i];
+                ya[i]           = yb[i];
+                yb[i]           = t0;
+            }
+        }
+
+        void base_backend_t::swap_rows(void *buf, size_t rows, size_t bytes_per_row)
+        {
+            uint8_t *a      = static_cast<uint8_t *>(buf);
+            uint8_t *b      = &a[(rows - 1) * bytes_per_row];
+            for ( ; a < b ; a += bytes_per_row, b -= bytes_per_row)
+                memswap(a, b, bytes_per_row);
+        }
+
         status_t base_backend_t::set_bg_color(backend_t *handle, const color_t *color)
         {
             if (color == NULL)
