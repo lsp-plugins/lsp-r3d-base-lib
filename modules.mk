@@ -18,7 +18,8 @@
 # along with lsp-r3d-base-lib.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-# Variables that describe dependencies
+#------------------------------------------------------------------------------
+# Variables that describe source code dependencies
 LSP_COMMON_LIB_VERSION     := 1.0.20
 LSP_COMMON_LIB_NAME        := lsp-common-lib
 LSP_COMMON_LIB_TYPE        := src
@@ -37,11 +38,8 @@ LSP_R3D_IFACE_TYPE         := src
 LSP_R3D_IFACE_URL_RO       := https://github.com/lsp-plugins/$(LSP_R3D_IFACE_NAME).git
 LSP_R3D_IFACE_URL_RW       := git@github.com:lsp-plugins/$(LSP_R3D_IFACE_NAME).git
 
-LIBPTHREAD_VERSION         := system
-LIBPTHREAD_NAME            := libpthread
-LIBPTHREAD_TYPE            := opt
-LIBPTHREAD_LDFLAGS         := -lpthread
-
+#------------------------------------------------------------------------------
+# Variables that describe system dependencies
 LIBSHLWAPI_VERSION         := system
 LIBSHLWAPI_NAME            := libshlwapi
 LIBSHLWAPI_TYPE            := opt

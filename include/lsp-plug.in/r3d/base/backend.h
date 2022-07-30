@@ -63,7 +63,7 @@ namespace lsp
             static status_t     get_location(backend_t *handle, ssize_t *left, ssize_t *top, ssize_t *width, ssize_t *height);
 
         } base_backend_t;
-    }
-}
+    } /* namespace r3d */
+} /* namespace lsp */
 
 #endif /* LSP_PLUG_IN_R3D_BASE_BACKEND_H_ */
