@@ -19,6 +19,7 @@
  * along with lsp-r3d-base-lib. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <lsp-plug.in/common/types.h>
 #include <lsp-plug.in/r3d/base/backend.h>
 #include <lsp-plug.in/stdlib/string.h>
 
@@ -157,6 +158,103 @@ namespace lsp
             R[13]   = A[1] * B[12]  + A[5] * B[13]  + A[9] * B[14]  + A[13] * B[15];
             R[14]   = A[2] * B[12]  + A[6] * B[13]  + A[10] * B[14] + A[14] * B[15];
             R[15]   = A[3] * B[12]  + A[7] * B[13]  + A[11] * B[14] + A[15] * B[15];
+        }
+
+        void base_backend_t::memswap(void *a, void *b, size_t bytes)
+        {
+        #ifdef ARCH_64BIT
+            // 32-byte blocks
+            uint64_t *xa    = reinterpret_cast<uint64_t *>(a);
+            uint64_t *xb    = reinterpret_cast<uint64_t *>(b);
+
+            for (; bytes >= 32 ; bytes -= 32, xa += 4, xb += 4)
+            {
+                uint64_t t0     = xa[0];
+                uint64_t t1     = xa[1];
+                uint64_t t2     = xa[2];
+                uint64_t t3     = xa[3];
+
+                xa[0]           = xb[0];
+                xa[1]           = xb[1];
+                xa[2]           = xb[2];
+                xa[3]           = xb[3];
+
+                xb[0]           = t0;
+                xb[1]           = t1;
+                xb[2]           = t2;
+                xb[3]           = t3;
+            }
+
+            // 4-byte blocks
+            uint32_t *ya    = reinterpret_cast<uint32_t *>(xa);
+            uint32_t *yb    = reinterpret_cast<uint32_t *>(xb);
+
+            for (; bytes >= 4 ; bytes -= 4, ++ya, ++yb)
+            {
+                uint32_t t0     = ya[0];
+                ya[0]           = yb[0];
+                yb[0]           = t0;
+            }
+
+            // 1-byte blocks
+            uint8_t *za    = reinterpret_cast<uint8_t *>(ya);
+            uint8_t *zb    = reinterpret_cast<uint8_t *>(yb);
+
+            for (size_t i=0; i<bytes; ++i)
+            {
+                uint8_t t0      = za[i];
+                za[i]           = zb[i];
+                zb[i]           = t0;
+            }
+        #else
+            // 16-byte blocks
+            uint32_t *xa    = reinterpret_cast<uint32_t *>(a);
+            uint32_t *xb    = reinterpret_cast<uint32_t *>(b);
+            for (; bytes >= 16 ; bytes -= 16, xa += 4, xb += 4)
+            {
+                uint32_t t0     = xa[0];
+                uint32_t t1     = xa[1];
+                uint32_t t2     = xa[2];
+                uint32_t t3     = xa[3];
+
+                xa[0]           = xb[0];
+                xa[1]           = xb[1];
+                xa[2]           = xb[2];
+                xa[3]           = xb[3];
+
+                xb[0]           = t0;
+                xb[1]           = t1;
+                xb[2]           = t2;
+                xb[3]           = t3;
+            }
+
+            // 4-byte blocks
+            for (; bytes >= 4 ; bytes -= 4, ++xa, ++xb)
+            {
+                uint32_t t0     = xa[0];
+                xa[0]           = xb[0];
+                xb[0]           = t0;
+            }
+
+            // 1-byte blocks
+            uint8_t *ya    = reinterpret_cast<uint8_t *>(xa);
+            uint8_t *yb    = reinterpret_cast<uint8_t *>(xb);
+
+            for (size_t i=0; i<bytes; ++i)
+            {
+                uint8_t t0      = ya[i];
+                ya[i]           = yb[i];
+                yb[i]           = t0;
+            }
+        #endif /* ARCH_64BIT */
+        }
+
+        void base_backend_t::swap_rows(void *buf, size_t rows, size_t bytes_per_row)
+        {
+            uint8_t *a      = static_cast<uint8_t *>(buf);
+            uint8_t *b      = &a[(rows - 1) * bytes_per_row];
+            for ( ; a < b ; a += bytes_per_row, b -= bytes_per_row)
+                memswap(a, b, bytes_per_row);
         }
 
         status_t base_backend_t::set_bg_color(backend_t *handle, const color_t *color)
