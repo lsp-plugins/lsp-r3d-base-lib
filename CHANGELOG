@@ -3,6 +3,7 @@
 *******************************************************************************
 
 === 1.0.5 ===
+* Added memswap() function for vertical flipping support of the image.
 * Updated build scripts.
 
 === 1.0.4 ===
