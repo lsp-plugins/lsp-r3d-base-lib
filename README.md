@@ -2,6 +2,17 @@
 
 Base library for implementing and loading 3D rendering backend.
 
+## Supported platforms
+
+The build and correct unit test execution has been confirmed for following platforms:
+* FreeBSD
+* GNU/Linux
+* Haiku
+* MacOS (ARM-based)
+* OpenBSD
+* Windows 32-bit
+* Windows 64-bit
+
 Requirements
 ======
 
